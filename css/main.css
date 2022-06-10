@@ -1,0 +1,231 @@
+html {
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+body {
+    background: url("../img/Alone-and-missing.jpg") no-repeat center center fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+p {
+    color: rgb(6, 17, 51);
+    font-size: 20px;
+    font-family: 'Bebas Neue', cursive;
+    font-family: 'Lalezar', cursive;
+}
+
+a {
+    color: #ffff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ffff;
+    text-decoration: none;
+}
+
+.rounded-img {
+    width: 240px;
+    height: 240px;
+    border: double 4px transparent;
+    border-radius: 60px;
+    background-image: linear-gradient(white, white), radial-gradient(circle at top left, #000000, #000000);
+    background-clip: content-box, border-box;
+    margin: 0 auto;
+}
+
+#flip {
+    height: 50px;
+    overflow: hidden;
+}
+
+#flip>div>p {
+    color: #000000;
+    padding: 5px 12px;
+    height: 45px;
+    margin-bottom: 45px;
+    display: inline-block;
+    font-family: 'Bebas Neue', cursive;
+}
+
+#flip div:first-child {
+    animation: show 10s linear infinite;
+    animation-delay: 10.5s;
+    visibility: hidden;
+}
+
+@keyframes show {
+    to {
+        visibility: visible;
+    }
+
+    0% {
+        margin-top: -360px;
+    }
+
+    12% {
+        margin-top: -270px;
+    }
+
+    18% {
+        margin-top: -270px;
+    }
+
+    36% {
+        margin-top: -180px;
+    }
+
+    41% {
+        margin-top: -180px;
+    }
+
+    55% {
+        margin-top: -90px;
+    }
+
+    60% {
+        margin-top: -90px;
+    }
+
+    72% {
+        margin-top: 0px;
+    }
+
+    99.99% {
+        margin-top: 0px;
+    }
+
+    100% {
+        margin-top: -360px;
+    }
+}
+
+@keyframes showIcons {
+    to {
+        opacity: 1;
+    }
+
+    to {
+        visibility: visible;
+    }
+}
+
+.icons {
+    text-align: center;
+    max-width: 500px;
+    max-height: 300px;
+    margin-top: 30px;
+    padding: 10px;
+    animation: showIcons 2s forwards;
+    animation-delay: 7.5s;
+    opacity: 0;
+    visibility: visible;
+}
+
+@keyframes showIcons {
+    to {
+        opacity: 1;
+    }
+
+    to {
+        visibility: visible;
+    }
+}
+
+.rounded-icon {
+    border: 1px solid;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    padding-top: 10px;
+    margin-top: 0px;
+    -webkit-transition: all .5s ease 0s;
+    -moz-transition: all .5s ease 0s;
+    -o-transition: all .5s ease 0s;
+    transition: all .5s ease 0s;
+}
+
+.rounded-icon:hover {
+    background: rgba(10, 10, 10, 0.1);
+    border-color: rgba(10, 10, 10, 0.1);
+}
+
+.fa-twitter:hover {
+    background-color: #000000;
+}
+
+.fa-linkedin:hover {
+    background-color: #000000;
+}
+
+.fa-medium:hover {
+    background-color: #000000;
+}
+
+.fa-github:hover {
+    background-color: #000000;
+}
+.fa-instagram:hover {
+    background-color: #000000;
+}
+.fa-snapchat:hover {
+    background-color: #000000;
+}
+
+.cursor {
+    animation: blink 0.7s infinite;
+    opacity: 0;
+}
+
+@keyframes blink {
+
+    99% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+
+}
+
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+}
+
+
+@keyframes octocat-wave {
+
+    0%,
+    100% {
+        transform: rotate(0);
+    }
+
+    20%,
+    60% {
+        transform: rotate(-25deg);
+    }
+
+    40%,
+    80% {
+        transform: rotate(10deg);
+    }
+}
+
+@media (max-width: 500px) {
+    .github-corner:hover .octo-arm {
+        animation: none;
+    }
+
+    .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out;
+    }
+}
