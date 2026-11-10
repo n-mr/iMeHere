@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0B0B14">
+    <meta name="color-scheme" content="dark">
+    <title>404 — Page not found · v2Talal</title>
+    <meta name="description" content="404 — Page not found.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="icon" type="image/svg+xml" href="/img/favicon/favicon.svg">
+    <link rel="icon" type="image/x-icon" href="/img/favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preload" as="font" type="font/woff2"
+          href="/fonts/bricolage-grotesque-700.woff2" crossorigin>
+    <link rel="stylesheet" href="/css/fonts.css?v=44">
+    <link rel="stylesheet" href="/css/style.css?v=44">
+    <link rel="stylesheet" href="/css/polish.css?v=44">
+    <link rel="stylesheet" href="/css/error.css?v=44">
+    <noscript><style>html,body{overflow:auto!important;height:auto!important;min-height:100dvh!important}</style></noscript>
+</head>
+<body class="page-404">
+    <div class="page-bg" aria-hidden="true"></div>
+    <div class="ambient-bloom bloom-a" aria-hidden="true"></div>
+    <div class="ambient-bloom bloom-b" aria-hidden="true"></div>
+    <div class="noise-overlay" aria-hidden="true"></div>
+    <div class="stage">
+        <main class="core">
+            <p class="err-badge reveal">Error · 404</p>
+            <p class="err-code" aria-hidden="true">
+                <span class="err-digit">4</span>
+                <span class="err-zero">0</span>
+                <span class="err-digit">4</span>
+            </p>
+            <h1 class="err-title">
+                <span class="sr-only">This page isn't here.</span>
+                <span class="err-typed" id="typed" aria-hidden="true"></span><span class="err-caret" id="caret1" aria-hidden="true"></span>
+            </h1>
+            <p class="err-copy">
+                <span class="sr-only">The link may be old, mistyped, or the page was never published. Nothing is broken on your side.</span>
+                <span id="copy-typed" aria-hidden="true"></span><span class="err-caret err-caret--copy" id="caret2" aria-hidden="true"></span>
+            </p>
+            <a class="btn btn--primary" href="/" id="homeBtn" aria-label="Back to home">
+                <span class="btn-chip" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none"
+                         stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/>
+                    </svg>
+                </span>
+                <span class="btn-label">Back to home</span>
+            </a>
+            <p class="err-hint" aria-hidden="true"><kbd id="hint-key">Esc</kbd><span>return home</span></p>
+        </main>
+    </div>
+    <script src="/js/main.js?v=44">
+</script>
+    <script>(function () {
+        'use strict';
+        var HEAD = "This page isn't here.";
+        var BODY = "The link may be old, mistyped, or the page was never published. Nothing is broken on your side.";
+        var typed = document.getElementById('typed');
+        var copyTyped = document.getElementById('copy-typed');
+        var caret1 = document.getElementById('caret1');
+        var caret2 = document.getElementById('caret2');
+        var btn = document.getElementById('homeBtn');
+        var hint = document.querySelector('.err-hint');
+        var fromSite = false;
+        try {
+            fromSite = !!document.referrer && new URL(document.referrer).origin === location.origin;
+        } catch (e) { fromSite = false; }
+        if (fromSite && window.history.length > 1) {
+            btn.querySelector('.btn-label').textContent = 'Back to the previous page';
+            btn.setAttribute('aria-label', 'Back to the previous page');
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                window.history.back();
+            });
+        }
+        if (hint) {
+            var touch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+            if (touch) {
+                hint.hidden = true;
+            } else {
+                var platform = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+                var mac = /mac/i.test(platform);
+                document.getElementById('hint-key').textContent = mac ? 'esc' : 'Esc';
+                document.documentElement.setAttribute('data-os', mac ? 'mac' : 'pc');
+            }
+        }
+        function reveal() {
+            btn.classList.add('play');
+            setTimeout(function () {
+                btn.style.opacity = '1';
+                btn.style.visibility = 'visible';
+                btn.style.transform = 'none';
+                btn.style.filter = 'none';
+            }, 780);
+        }
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduced) {
+            typed.textContent = HEAD;
+            copyTyped.textContent = BODY;
+            caret1.classList.add('is-done');
+            caret2.classList.add('is-done');
+            reveal();
+            return;
+        }
+        var i = 0;
+        var j = 0;
+        var phase = 'head';
+        function step() {
+            if (document.hidden) {
+                setTimeout(step, 200);
+                return;
+            }
+            if (phase === 'head') {
+                i++;
+                typed.textContent = HEAD.slice(0, i);
+                if (i >= HEAD.length) {
+                    caret1.classList.add('is-done');
+                    phase = 'gap';
+                    setTimeout(step, 420);
+                    return;
+                }
+                setTimeout(step, 55 + Math.random() * 25);
+                return;
+            }
+            if (phase === 'gap') {
+                phase = 'body';
+                step();
+                return;
+            }
+            j++;
+            copyTyped.textContent = BODY.slice(0, j);
+            if (j >= BODY.length) {
+                caret2.classList.add('is-done');
+                reveal();
+                return;
+            }
+            var ch = BODY.charAt(j - 1);
+            var extra = (ch === '.' || ch === ',') ? 130 : 0;
+            setTimeout(step, 22 + Math.random() * 12 + extra);
+        }
+        setTimeout(step, 320);
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') window.location.href = '/';
+        });
+    })();
+</script>
+</body>
+</html>

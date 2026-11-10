@@ -1,0 +1,28 @@
+{
+    "id": "/",
+    "name": "v2Talal | Elite Hub",
+    "short_name": "v2Talal",
+    "description": "v2Talal — Creative development, Security research and interface design.",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "background_color": "#0B0B14",
+    "theme_color": "#0B0B14",
+    "lang": "en",
+    "dir": "rtl",
+    "icons": [
+        {
+            "src": "/img/favicon/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/img/favicon/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ]
+}
